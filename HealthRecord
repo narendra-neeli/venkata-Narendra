@@ -1,0 +1,81 @@
+{
+  "name": "HealthRecord",
+  "type": "object",
+  "properties": {
+    "patient_email": {
+      "type": "string"
+    },
+    "patient_name": {
+      "type": "string"
+    },
+    "condition": {
+      "type": "string",
+      "description": "Medical condition name"
+    },
+    "severity": {
+      "type": "string",
+      "enum": [
+        "mild",
+        "moderate",
+        "severe",
+        "critical"
+      ],
+      "default": "mild"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "active",
+        "monitoring",
+        "improving",
+        "resolved"
+      ],
+      "default": "active"
+    },
+    "blood_pressure_systolic": {
+      "type": "number"
+    },
+    "blood_pressure_diastolic": {
+      "type": "number"
+    },
+    "heart_rate": {
+      "type": "number"
+    },
+    "temperature": {
+      "type": "number"
+    },
+    "blood_sugar": {
+      "type": "number"
+    },
+    "oxygen_saturation": {
+      "type": "number"
+    },
+    "weight": {
+      "type": "number"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "recorded_date": {
+      "type": "string",
+      "format": "date"
+    }
+  },
+  "required": [
+    "patient_email",
+    "condition"
+  ],
+  "rls": {
+    "create": {},
+    "read": {
+      "$or": [
+        {
+          "data.patient_email": "{{user.email}}"
+        },
+        {
+          "user_condition": {
+            "role": "admin"
+          }
+        },
+        {
+ 
