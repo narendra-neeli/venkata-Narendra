@@ -1,0 +1,36 @@
+{
+  "name": "Message",
+  "type": "object",
+  "properties": {
+    "conversation_id": {
+      "type": "string",
+      "description": "ID of the conversation"
+    },
+    "sender_email": {
+      "type": "string"
+    },
+    "sender_name": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "type": {
+      "type": "string",
+      "enum": [
+        "text",
+        "file",
+        "image",
+        "system"
+      ],
+      "default": "text"
+    },
+    "file_url": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "conversation_id",
+    "content"
+  ]
+}
